@@ -1,0 +1,28 @@
+.br-theme-bars-movie .br-widget {
+  height: 60px;
+}
+.br-theme-bars-movie .br-widget a {
+  display: block;
+  width: 60px;
+  height: 20px;
+  float: left;
+  background-color: #A6A6A6;
+  margin: 1px;
+}
+.br-theme-bars-movie .br-widget a.br-active,
+.br-theme-bars-movie .br-widget a.br-selected {
+  background-color: #DEA35B;
+}
+.br-theme-bars-movie .br-widget .br-current-rating {
+  clear: both;
+  text-align: center;
+  display: block;
+  padding: .5em 0;
+  color: #915C3C;
+  font-size: 20px;
+  font-weight: normal;
+}
+.br-theme-bars-movie .br-readonly a.br-active,
+.br-theme-bars-movie .br-readonly a.br-selected {
+  background-color: #4278f5;
+}

@@ -1,0 +1,282 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+    <title>一分钟测试：穿越回唐朝，你会是哪一位诗人？</title>
+    <script src="static/js/jquery-2.1.4.min.js"  type="text/javascript" charset="utf-8" ></script>
+    <script src="static/js/bootstrap.min.js"  type="text/javascript" charset="utf-8" ></script>
+    <link href="static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/css/bootstrap-theme.min.css" rel="stylesheet">
+    <script src="static/js/jquery.barrating.min.js"  type="text/javascript" charset="utf-8" ></script>
+    <link href="static/css/bars-pill.css" rel="stylesheet">
+    <link href="static/css/bars-square.css" rel="stylesheet">
+    <link rel="stylesheet/less" type="text/css" href="static/css/rating.less" />
+    <script src="static/js/less.min.js"></script> 
+</head>
+<body>
+    <div style='margin:0 auto;width:0px;height:0px;overflow:hidden;'>
+        <img src="static/images/cover.jpg" width='700'>
+    </div>
+    <div id="container_introduction_bg"></div>
+    <div class="container container_introduction">
+            <h1><div class="alert text-info text-center" role="alert">穿越回唐朝，你会是哪一位诗人？</div></h1><h2><div class="alert text-muted text-center" role="alert">无需犹豫，请按照你的第一感觉点击相应的分数 </div></h2>
+    </div>
+
+    <div class="container" id="container_task">
+        <div class="progress">
+          <div class="progress-bar progress-bar-success" style="width: 0%"></div>
+          <div class="progress-bar progress-bar-info progress-bar-striped" style="width: 0%"></div>
+          <div class="progress-bar progress-bar-danger" style="width: 0%"></div>
+        </div>
+        <div class="alert_tip alert text-info" role="alert">
+            <h2 class="introduction">0为最差，9为最好，请您点击合适的数字评分：</h2>
+            <h2><span class="label label-info alert_process"></span></h2>
+        </div>
+
+        <div class="alert_finish jumbotron" >
+            <h1><div class="text-info">您已经完成了评分！</div></h1>
+            </br>
+            <h2><div class="text-info">您的年龄是：</div></h2>
+            </br>
+            <div class="row">
+            <div class="btn-group-vertical col-sm-4 col-sm-offset-4">
+                <button type="button" class="btn ages btn-lg btn-info" id='a1'>5~18岁</button>
+                <button type="button" class="btn ages btn-lg btn-info" id='a2'>19~30岁</button>
+                <button type="button" class="btn ages btn-lg btn-info" id='a3'>30~50岁</button>
+                <button type="button" class="btn ages btn-lg btn-info" id='a4'>50岁以上</button>
+            </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">  
+          <div class="panel-body">
+            <h1 class="poem text-center">sentence</h1>
+            <h2 class="tip text-warning text-center">这首诗美吗？</h2>
+            <div class="rating text-center">
+                <select id="q1"></select>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">  
+          <div class="panel-body">
+            <h1 class="poem text-center">sentence</h1>
+            <h2 class="tip text-warning text-center">这首诗顺口吗？</h2>
+            <div class="rating text-center">
+                <select id="q2"></select>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">  
+          <div class="panel-body">
+            <h1 class="poem text-center">sentence</h1>
+            <h2 class="tip text-warning text-center">这首诗触动了你吗？</h2>
+            <div class="rating text-center">
+                <select id="q3"></select>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">  
+          <div class="panel-body">
+            <h1 class="poem text-center">sentence</h1>
+            <h2 class="tip text-warning text-center">你觉得这首诗有意义吗？</h2>
+            <div class="rating text-center">
+                <select id="q4"></select>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">  
+          <div class="panel-body">
+            <h1 class="poem text-center">sentence</h1>
+            <h2 class="tip text-warning text-center">如果一份赏金1元，你愿意给这首诗打多少赏？</h2>
+            <div class="rating text-center">
+                <select id="q5"></select>
+            </div>
+          </div>
+        </div>
+    </div>
+
+</body>
+
+<script type="text/javascript">
+    $.fn.randomize = function(selector){
+        (selector ? this.find(selector) : this).parent().each(function(){
+            $(this).children(selector).sort(function(){
+                return Math.random() - 0.5;
+            }).detach().appendTo(this);
+        });
+
+        return this;
+    };
+
+
+    var scores = {};
+    var poems = "147,落花芳草渡,不见好花人,今日何为者,明朝欲占春	131,渡头风雨外,城上水云中,今日人间事,秋香一点红	27,迎风细雨中,待月任东风,一夜江南路,明朝便不同	59,发皓齿歌声,行人不易生,不知他日事,一夜未分明".split('\t');
+    var questionCount = $('.panel.panel-default').size();
+    var poemIdx = 0;
+    var questionPart = 1;
+    var remain = poems.length;
+    var all_rt = '';
+    var startT;
+    var introductionIdx = 0;
+
+    $('#container_introduction_bg').css({'display':'block'});
+    $('.container_introduction').hide();
+    $('.container_introduction').eq(0).css({'display':'block'});
+    $('#container_introduction_bg,.container_introduction').click(function(){
+        $('.container_introduction').eq(introductionIdx).fadeOut(400);
+        introductionIdx++;
+        if(introductionIdx==$('.container_introduction').size()){
+            $('#container_introduction_bg').fadeOut(400);
+        }
+        else{
+            $('.container_introduction').eq(introductionIdx).css({'display':'block'});
+        }
+    });
+
+
+    if(location.pathname.slice(-4)=='info'){
+            location.pathname = location.pathname.slice(0,-5);
+        }
+    
+    var showPoem = function(idx){
+        $("#container_task").randomize(".panel");
+        all_rt = '';
+        poemID = poems[idx].split(',')[0]
+        poemText = poems[idx].split(',').slice(1)
+        $('.poem').html(poemText[0]+', <span></br></span>'+poemText[1]+'</br>'+poemText[2]+', <span></br></span>'+poemText[3]);
+        if(idx%2==0) $('.poem').attr("style","color: #1A202C")
+        else $('.poem').attr("style","color: #1F7872")
+
+        for(var i=0;i<10;i++){
+            $('select').append('<option value="'+i+'">'+i+'</option>')
+        }
+
+        $('select').barrating('show', {
+            theme: 'bars-pill',
+            initialRating: 'A',
+            showValues: true,
+            showSelectedRating: false,
+            fastClicks: true,
+            onSelect:function(value, text) {
+                question = $(this).parent().parent().find('select').attr('id');
+                all_rt += (question+':'+((new Date()).getTime()-startT).toString()+' ');
+                next();
+            }
+        });
+
+        $(".progress-bar-info").attr("style","width: "+Object.keys(scores).length/(+poems.length)*100+"%;");
+        $('select').barrating('clear');
+
+        if (scores[poemIdx]!=null){
+            loadAnswers(poemIdx);
+        }
+        else{
+            $('#rating').barrating('set',2);
+        }
+    }
+
+    var showQuestions = function(questionPart){
+        $('.panel.panel-default').hide();
+        $('.panel.panel-default').eq(questionPart-1).show();
+        startT = (new Date()).getTime();
+    }
+
+    var saveAnswers = function(){
+        remain--;
+        scores_t = new Array();
+        $('.br-wrapper').each(function(){
+            rating_q = $(this).find('select').attr('id');
+            rating_a = $(this).find('.br-current').attr('data-rating-value');
+            if(rating_a>=0){
+                scores_t.push([rating_q, rating_a]);
+            }
+         });
+        scores[poemIdx] = scores_t;
+        sendScore(poemIdx);
+    }
+
+    var loadAnswers = function(idx){
+        for(i in scores[idx]){
+            t = scores[idx][i];
+            $("[id='"+t[0]+"']").barrating('set', t[1]);
+         }
+    }
+
+    var previous = function(){
+        questionPart--;
+        if(questionPart==0){
+            if(poemIdx>0){
+                questionPart = questionCount;
+                poemIdx--;
+                showPoem(poemIdx);
+            }
+            else{
+                questionPart = 1;
+            }
+        } 
+        showQuestions(questionPart);        
+    }
+
+    var next = function(){
+        questionPart++;
+        if(questionPart>questionCount){
+            saveAnswers();
+            if(poemIdx<poems.length-1){
+                questionPart = 1;
+                poemIdx++;
+                showPoem(poemIdx);
+            }
+            else{
+                questionPart = questionCount;
+                $('.panel.panel-default').hide();
+                $('.alert_finish').show();
+                $('.alert_process').hide();
+                $('.alert_tip').hide();
+                $(".progress-bar-info").attr("style","width: "+poems.length*100/(+poems.length)+"%;");
+                return
+            }
+        } 
+        showQuestions(questionPart);
+    }
+
+    var sendScore = function(idx){
+        // send the rating score
+        $.post( url= "/send", 
+            data= {subject: "252", poem: poemID, scores: JSON.stringify(scores[idx]), all_rt: all_rt, finished: poemIdx+1} ,
+            function(data){console.log(data);}       
+        )
+    }
+
+   $("#previous").click(function(){
+        previous();
+    });
+   $("#next").click(function(){
+        next();
+    });
+
+   $("body").keyup(function(event){
+        if(event.keyCode==13) null; //回车
+        if(event.keyCode==37) null; //向左
+        if(event.keyCode==39) null; //向右
+    });
+
+    if (remain>0){
+        $('.alert_finish').hide();
+        $(".progress-bar-success").attr("style","width:0%;");
+
+        showPoem(poemIdx);
+        showQuestions(questionPart);
+    }
+    else {
+        $('.alert_process').hide();
+        $(".progress-bar-success").attr("style","width: 100%;");
+        $('.panel.panel-default').hide();
+    }
+
+    $('.ages').click(function(){
+        window.location.href = 'ending';
+    });
+
+</script>
+</html>

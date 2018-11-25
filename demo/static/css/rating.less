@@ -1,0 +1,148 @@
+html, body { 
+  font-family: "微软雅黑";
+  background-color: #F5F5F5;
+}
+
+.br-theme-bars-pill .br-widget a {
+  background-color: #CCDDDD;
+  color: #242E35;
+}
+
+.rating {  
+  left:50%;
+}
+.labelling {
+  margin-bottom: 10px;
+}
+.alert_process{
+  margin-top:-48px;
+  float: right;
+}
+.alert_finish{ 
+  width:250px;
+  position:fixed;
+  left:50%;
+  margin-left:-125px;
+  padding: 20px;
+}
+#container_introduction_bg{
+  display:none;
+  position:fixed;
+  width:100%;height:100%;
+  background:#000;
+  z-index:2;
+  top:0;left:0;opacity:0.7;
+}
+.container_introduction{
+  display:none;
+  left:50%;
+  position:fixed;
+  background:#fff;
+  z-index:3;
+}
+.btn-group-lg>.btn, .btn-lg{
+  font-size: 20px;
+}
+
+@h1_size: 35px;
+@h2_size: 30px;
+
+@media (min-width: 0px) and (max-width: 400px) {
+  h1 {
+    font-size: @h1_size - 10;
+    line-height: 120%;
+  }
+  h2 {
+    font-size: @h2_size - 10;
+    line-height: 120%;
+  }
+  .introduction {
+    font-size: @h2_size - 13;
+  }
+  .container_introduction{
+    width:250px;
+    height:300px;
+    margin-top:150px;
+    margin-left:-125px;
+  }
+  .br-theme-bars-pill .br-widget a{
+    font-size: @h2_size - 16;
+    padding: 7px 8px;
+  }
+  .rating{  
+    margin-left:-(@h2_size - 16 + 8*2)*5;
+  }
+}
+@media (min-width: 400px) and (max-width: 550px) {
+  h1 {
+    font-size: @h1_size - 8;
+  }
+  h2 {
+    font-size: @h2_size - 8;
+  }
+  .introduction {
+    font-size: @h2_size - 11;
+  }
+  .container_introduction{
+    width:250px;
+    height:300px;
+    margin-top:150px;
+    margin-left:-125px;
+  }
+  .br-theme-bars-pill .br-widget a{
+    font-size: @h2_size - 11;
+    padding: 10px 13px;
+  }
+  .rating{  
+    margin-left:-444/2;
+  }
+  .poem span{
+    display:none;
+  }
+}
+@media (min-width: 550px) and (max-width: 800px) {
+  h1 {
+    font-size: @h1_size;
+  }
+  h2 {
+    font-size: @h2_size;
+  }
+  .introduction {
+    font-size: @h2_size - 3;
+  }
+  .container_introduction{
+    width:450px;
+    height:300px;
+    margin-top:150px;
+    margin-left:-225px;
+  }
+  .br-theme-bars-pill .br-widget a{
+    font-size: @h2_size - 5;
+    padding: 10px 16px;
+  }
+  .poem span{
+    display:none;
+  }
+}
+@media (min-width: 800px) {
+  h1 {
+    font-size: @h1_size;
+  }
+  h2 {
+    font-size: @h2_size;
+  }
+  .container_introduction{
+    width:650px;
+    height:250px;
+    top:50%;
+    left:50%;
+    margin-top:-125px;
+    margin-left:-325px;
+  }
+  .br-theme-bars-pill .br-widget a{
+    font-size: 18px;
+  }
+  .poem span{
+    display:none;
+  }
+}
