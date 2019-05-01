@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>NeuralPoem Project - Method (AI)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="css/normalize.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="css/cayman.css" media="screen">
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Paper: Poetic structure aids content parsing</h1>
+      <h2 class="project-tagline">Teng et al. 2019., under review (All rights reserved)</h2>
+      <a href="index.html" class="btn">Introduction</a>
+      <a href="poems.html" class="btn">The poems</a>
+      <a href="demo/index.html" class="btn">The demo of rating</a>
+      </br>
+      <a href="method1.html" class="btn">Method (Neuroscience)</a>
+      <a href="method2.html" class="btn">Method (AI)</a>
+      <a href="method3.html" class="btn">Method (Crowdsourcing)</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+        <a id="header-1" class="anchor" href="#header-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+        How we did it by AI:
+      </h1>
+
+      <h2>
+        <a id="header-2" class="anchor" href="#header-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+        Artificial poem generation
+      </h2>
+
+      We replicated the poem generation procedures in <a href="https://github.com/XingxingZhang/rnnpg">Zhang and Lapata (2014)</a> and constructed a poem generation model based on recurrent neural networks. 
+      </br>
+      </br>
+      The model primarily selected poetic contents (words and lines) constraint by the learned surface realization (e.g. phonological rules). 
+      Trained on a corpus of classical Chinese poems containing 78,859 quatrains from Tang Poems, Song Poems, Song Ci, Ming Poems, Qing Poems, and Tai Poems, the model learns representations of individual characters and their combinations into one or more lines, as well as how these lines mutually reinforce and constrain each other. 
+      </br>
+      </br>
+      We first used the model to generate 4000 artificial poems. The illustration of the poem generation is shown below:
+      </br>
+      </p>
+
+      <p><img src="images/artifical_poems_generation.jpg" alt=""></p>
+
+      <h2>
+        <a id="header-3" class="anchor" href="#header-3" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+        Rating the artificial poems by computation
+      </h2>
+      
+      We further acquired an objective index of complexity of these artificial poems - language complexity - by measuring the perplexity of the language model used to generate the second to fourth sentences of each poem. The perplexity is an intrinsic metric to evaluate the quality of language models. It is the inverse probability of the test sentence (W), normalized by the number of words (N):
+      </br>
+      </br>
+      Lower perplexity indicates a better language model. In math:
+
+      $$P(W) = P(w_1, w_2, \cdots, w_N)^ {-\frac{1}{N}}$$
+      </br>
+      Based on the chain rule, we derived the below:
+      $$P(W) = [\prod_{i=1}^{N} \frac{1}{P(w_i | w_1, w_2,  \cdots, w_{i-1})}]^{-\frac{1}{N}}$$
+      </br>
+      We used the recurrent neural network to compute the conditional probability below: 
+      $$P(w_i | w_1, w_2, \cdots, w_{i-1})$$.
+
+        
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/ray306/neural_poem">This website</a> is maintained by <a href="https://github.com/ray306">Jinbiao Yang</a>.</span>
+
+        <span class="site-footer-credits">The page template was based on <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a>.</span>
+      </footer>
+
+    </section>
+  </body>
+</html>
+

@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>NeuralPoem Project - Method (Crowdsourcing)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="css/normalize.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="css/cayman.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Paper: Poetic structure aids content parsing</h1>
+      <h2 class="project-tagline">Teng et al. 2019., under review (All rights reserved)</h2>
+      <a href="index.html" class="btn">Introduction</a>
+      <a href="poems.html" class="btn">The poems</a>
+      <a href="demo/index.html" class="btn">The demo of rating</a>
+      </br>
+      <a href="method1.html" class="btn">Method (Neuroscience)</a>
+      <a href="method2.html" class="btn">Method (AI)</a>
+      <a href="method3.html" class="btn">Method (Crowdsourcing)</a>
+    </section>
+
+    <section class="main-content">
+<p>To evaluate the linguistic and aesthetic quality of the artificial poems, we collected behavioral ratings through online crowdsourcing evaluation, which enabled us to sample a wide range of population and acquire a large amount of data. The same 150 artificial poems as in the MEG experiment were used in the online evaluation. 
+</br></br>
+We designed five questions to probe five aspects of poem appreciation, which can be answered online within a reasonable amount of time: 
+<ol>
+  <li>aesthetics: <code>is this poem beautiful?</code></li>
+  <li>fluency: <code>does the poem read fluently?</code></li>
+  <li>emotion: <code>are you moved by this poem?</code></li>
+  <li>meaning: <code>is this poem meaningful?</code></li>
+  <li>value: <code>how much would you tip the poet?</code></li>
+</ol>
+
+We customized an online test that can be run on smartphones and computers, and collected a total of 55982 valid responses and each question on each poem received a number of evaluations ranging from 52 to 109.
+(See <a href="data/report_crowds_raw.csv" class="">The demo of rating</a> for a demonstration of our online rating program)
+
+<h1>Rating results</h1>
+<p>The sheet of the rating result were organized as the following format:</p>
+
+<ul>
+  <li>poem: <code>the poem ID</code></li>
+  <li>subject: <code>the subject ID</code></li>
+  <li>score_1: <code>the rating score on 'aesthetics' question</code></li>
+  <li>score_2: <code>the rating score on 'fluency' question</code></li>
+  <li>score_3: <code>the rating score on 'emotion' question</code></li>
+  <li>score_4: <code>the rating score on 'meaning' question</code></li>
+  <li>score_5: <code>the rating score on 'value' question</code></li>
+  <li>rt_1: <code>the reaction time on 'aesthetics' question</code></li>
+  <li>rt_2: <code>the reaction time on 'fluency' question</code></li>
+  <li>rt_3: <code>the reaction time on 'emotion' question</code></li>
+  <li>rt_4: <code>the reaction time on 'meaning' question</code></li>
+  <li>rt_5: <code>the reaction time on 'value' question</code></li>
+</ul>
+
+
+<h2>Data samples <a href="data/report_crowds_raw.csv" class="">(Download the full data)</a></h2>
+
+<table>
+  <thead>
+    <tr>
+    <th>poem</th>
+    <th>subject</th>
+    <th>score_1</th>
+    <th>score_2</th>
+    <th>score_3</th>
+    <th>score_4</th>
+    <th>score_5</th>
+    <th>rt_1</th>
+    <th>rt_2</th>
+    <th>rt_3</th>
+    <th>rt_4</th>
+    <th>rt_5</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+    <td>147</td><td>12</td><td>3</td><td>3</td><td>4</td><td>4</td><td>4</td><td>1732</td><td>1916</td><td>15132</td><td>1585</td><td>2594</td>
+    </tr>
+    <tr>
+    <td>16</td><td>12</td><td>5</td><td>3</td><td>5</td><td>4</td><td>5</td><td>1316</td><td>7062</td><td>6214</td><td>1464</td><td>1220</td>
+    </tr>
+    <tr>
+    <td>65</td><td>12</td><td>3</td><td>3</td><td>5</td><td>4</td><td>4</td><td>2163</td><td>1233</td><td>1835</td><td>10507</td><td>1996</td>
+    </tr>
+    <tr>
+    <td>92</td><td>12</td><td>3</td><td>3</td><td>3</td><td>2</td><td>2</td><td>1362</td><td>1154</td><td>7783</td><td>1466</td><td>1718</td>
+    </tr>
+    <tr>
+    <td>56</td><td>29</td><td>8</td><td>9</td><td>8</td><td>8</td><td>9</td><td>19760</td><td>13651</td><td>13578</td><td>5705</td><td>2309</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1>Analysis procedure</h1>
+<a href="data/rating_crowdsourcing.ipynb" class="">View the script</a>
+<p>Correlation between online poem ratings and neural signatures.</p>
+<p>We further probed the parsing mechanisms by examining whether the observed neural signatures of poem parsing correlated with the language complexity of the artificial poems as well as the behavioral ratings. Specifically, we asked:</p>
+<ul>
+  <li>Whether the language complexity of poem stimuli modulated poem parsing</li>
+  <li>Whether poem appreciation, as reflected by the behavioral ratings, was related to the parsing process</li>
+</ul>
+
+<h1>Findings</h1>
+<h2>Rating scores & Rating scores</h2>
+<p>
+  We found a significant correlation between emotion and meaning, as well as between emotion and aesthetics, supporting that the appreciation of verbal art is closely linked to the affective response (Jacobs, 2015; Wassiliwizky et al., 2017). The value of poems is significantly correlated with all the other four aspects, consistent with the evidence from the empirical aesthetics of music (Salimpoor et al., 2013).  
+</p>
+<h2>Rating scores & Language complexity(AI)</h2>
+<p>
+  We further tested whether the language complexity of the artificial poem affecteds poem appreciation, and found that the artificial poems of low language complexity, which were more likely to be generated by the learned language model, were rated higher.	
+</p>
+<h2>Rating scores & Neural responses</h2>
+<p>
+  We observed a significant positive correlation between the behavioral ratings and neural responses around 4.8 Hz for the first presentation in the left hemisphere. 
+</p>
+<p>
+  Another significant positive correlation between the behavioral ratings and the neural responses was observed in the frequency band from 4.02 to 4.08 Hz for the second presentation in the left hemisphere. 
+</p>
+
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/ray306/neural_poem">This website</a> is maintained by <a href="https://github.com/ray306">Jinbiao Yang</a>.</span>
+
+        <span class="site-footer-credits">The page template was based on <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a>.</span>
+      </footer>
+
+    </section>
+  </body>
+</html>
+
